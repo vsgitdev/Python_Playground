@@ -1,0 +1,166 @@
+{% extends "public/templates/public_template.html" %}
+
+{% import "macros/input_macros.html" as im %}
+
+{% block title %}Jinja{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+
+            <h1>Jinja Templates</h1>
+            <hr>
+
+            <h4>Variables</h4>
+            <hr>
+            <p>Name : {{ my_name }}</p>
+
+            <h4>Looping</h4>
+            <hr>
+            <ul>
+                {% for lang in langs %}
+                <li>{{ lang }}</li>
+                {% endfor %}
+            </ul>
+            
+
+            <h4>Looping with index</h4>
+            <hr>
+            <ul>
+                {% for lang in langs %}
+                <li>{{ loop.index0 }}: {{ lang }}</li>
+                {% endfor %}
+            </ul>
+
+            <h4>Looping a dict</h4>
+            <hr>
+            <ul>
+                {% for k,v in friends.items() %}
+                <li>{{ k }}: {{ v }}</li>
+                {% endfor %}
+            </ul>
+
+            <h4>Looping a dict keys</h4>
+            <hr>
+            <ul>
+                {% for k in friends.keys() %}
+                <li>{{ k }}</li>
+                {% endfor %}
+            </ul>
+
+            <h4>Looping a dict values</h4>
+            <hr>
+            <ul>
+                {% for v in friends.values() %}
+                <li>{{ v }}</li>
+                {% endfor %}
+            </ul>
+
+            <h4>Access list member</h4>
+            <hr>
+            <p>{{ langs[0] }} </p>
+
+
+            <h4>Access dict member</h4>
+            <hr>
+            <p>{{ friends["Tom"] }} </p>
+
+
+            <h4>Access class attribute</h4>
+            <hr>
+            <p>{{ my_remote.name }} </p>
+
+
+            <h4>Unpack variables</h4>
+            <hr>
+            {% set a, b = colours %}
+            <p>{{a}}</p>
+            <p>{{b}}</p>
+
+
+            <h4>Call a function</h4>
+            <hr>
+            <p>{{ repeat("Flask is awesome ", 10)}}</p>
+
+
+            <h4>Call a class method</h4>
+            <hr>
+            <p>{{ my_remote.clone() }}</p>
+
+
+            <h4>Conditionals</h4>
+            <hr>
+            {% if  cool %}
+            <p>Cool is {{ cool }}</p>
+            {% endif %}
+
+
+            <h4>Comparisons</h4>
+            <hr>
+            {% if  age < 18 %}
+            <p>No entry</p>
+            {% elif age < 26 %}
+            <p>Nearly old enought</p>
+            {% else %}
+            <p>you may enter</p>
+            {% endif %}
+
+
+            <h4>Math</h4>
+            <hr>
+            <p>{{ age / 2 }}</p>
+
+
+            <h4>Templates filters</h4>
+            <hr>
+            <p>{{ colours|length }}</p>
+
+            <p>{{ my_name|reverse }}</p>
+
+            <p>{{ my_name|upper }}</p>
+
+            <p>{{ my_name|upper|reverse }}</p>
+
+
+            <h4>Templates filters - join</h4>
+            <hr>
+            <p>{{ langs|join(", ") }}</p>
+
+            <h4>Custom filters</h4>
+            <hr>
+            <p>{{ date|clean_date }}</p>
+
+
+            <h4>Escaping</h4>
+            <hr>
+            {{my_html|safe}}
+
+            <h4>Suspicious</h4>
+            <hr>
+            {{suspicious}}
+
+
+            <h4>Macros</h4>
+            <hr>
+            
+            {{ im.input(label="your name", name="name", id="name", placeholder="enter your name")}}
+
+            {{ im.input(label="your age", type="number", name="age", id="age", placeholder="enter your age")}}
+
+            {{ im.input(label="Password", type="password", name="password", id="password", placeholder="enter your password")}}
+            
+
+            
+
+            
+
+
+
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
